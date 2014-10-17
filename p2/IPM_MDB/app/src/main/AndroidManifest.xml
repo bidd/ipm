@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.planetexpress.bender.ipm_mdb" >
+
+    <uses-permission android:name="android.permission.ACCOUNT_MANAGER" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS" />
+    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.USE_CREDENTIALS" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name=".MainWindow"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name=".MovieDetail"
+            android:label="@string/title_activity_movie_detail" >
+        </activity>
+        <activity
+            android:name=".comments"
+            android:label="@string/title_activity_comments" >
+        </activity>
+        <activity
+            android:name=".Accounts"
+            android:label="@string/title_activity_accounts" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Accounts_empty"
+            android:label="@string/title_activity_accounts_empty" >
+        </activity>
+    </application>
+
+</manifest>
