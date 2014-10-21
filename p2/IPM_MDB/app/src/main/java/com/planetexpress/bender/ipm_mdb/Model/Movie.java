@@ -1,4 +1,4 @@
-package com.planetexpress.bender.ipm_mdb;
+package com.planetexpress.bender.ipm_mdb.Model;
 
 import java.net.URL;
 
@@ -10,23 +10,23 @@ public class Movie {
     private Integer _id;
     private String _title;
     private Integer _year;
-    private URL _urlimage;
+    private String _urlimage;
     private String _synopsis;
     private String _category;
 
-    public Movie(Integer id, String title, Integer year){
+    public Movie(Integer id, String title, Integer year, String urlimage){
         _id = id;
         _title = title;
         _year = year;
+        _urlimage = urlimage;
     }
 
-    public Movie(Integer id, String title, Integer year, URL urlimage, String synopsis, String category){
+    public Movie(Integer id, String title, Integer year, String urlimage, String synopsis, String category){
         _id = id;
         _title = title;
         _year = year;
         _urlimage = urlimage;
         _synopsis = synopsis;
-
         _category = category;
     }
 
@@ -54,11 +54,11 @@ public class Movie {
         this._year = _year;
     }
 
-    public URL get_urlimage() {
+    public String get_urlimage() {
         return _urlimage;
     }
 
-    protected void set_urlimage(URL _urlimage) {
+    protected void set_urlimage(String _urlimage) {
         this._urlimage = _urlimage;
     }
 

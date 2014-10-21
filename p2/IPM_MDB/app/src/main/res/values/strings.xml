@@ -13,5 +13,6 @@
     <string name="title_activity_comments">comments</string>
     <string name="title_activity_accounts">Accounts</string>
     <string name="title_activity_accounts_empty">Accounts_empty</string>
+    <string name="anho">anho</string>
 
 </resources>
