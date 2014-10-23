@@ -10,22 +10,22 @@
     android:id="@+id/detail_rlayout">
 
     <Button
-        style="?android:attr/buttonStyleSmall"
+        style="?android:attr/imageButtonStyle"
+        android:background="@drawable/ic_arrow_back_black_24dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/back"
-        android:id="@+id/back_button"
+        android:id="@+id/backButtonMD"
         android:layout_alignParentStart="true" />
 
     <Button
-        style="?android:attr/buttonStyleSmall"
+        style="?android:attr/imageButtonStyle"
+        android:background="@drawable/ic_star_outline_black_24dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/fav"
         android:id="@+id/fav_button"
         android:layout_centerHorizontal="true"
         android:layout_alignParentTop="false"
-        android:layout_toRightOf="@+id/back_button" />
+        android:layout_toRightOf="@+id/backButtonMD" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
@@ -39,7 +39,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/imageView"
-        android:layout_below="@+id/back_button"
+        android:layout_below="@+id/backButtonMD"
         android:layout_alignEnd="@+id/comments_button"
         android:layout_marginRight="40dp"
         android:contentDescription="@string/cover" />
@@ -57,10 +57,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Batman"
         android:id="@+id/title_content"
         android:layout_below="@+id/title_text"
-        android:layout_toEndOf="@+id/title_text" />
+        android:singleLine="false"
+        android:layout_alignLeft="@+id/title_text"
+        android:layout_marginLeft="15dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -75,10 +76,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="2010"
         android:id="@+id/year_content"
         android:layout_below="@+id/year_text"
-        android:layout_alignStart="@id/title_content" />
+        android:layout_alignStart="@id/title_content"
+        android:layout_alignLeft="@+id/year_text"
+        android:layout_marginLeft="15dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -94,20 +96,26 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Accion, Intriga"
         android:id="@+id/category_content"
         android:layout_below="@+id/category_text"
-        android:layout_alignStart="@id/title_content" />
+        android:layout_alignStart="@id/title_content"
+        android:phoneNumber="false"
+        android:layout_alignLeft="@+id/category_text"
+        android:layout_marginLeft="15dp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Batman raises the stakes in his war on crime. With the help of Lieutenant Jim Gordon and District Attorney Harvey Dent, Batman sets out to dismantle the remaining criminal organizations that plague the city streets. The partnership proves to be effective, but they soon find themselves prey to a reign of chaos unleashed by a rising criminal mastermind known to the terrified citizens of Gotham as The Joker."
-        android:id="@+id/synopsis_content"
-        android:layout_centerVertical="true"
-        android:layout_below="@+id/category_content"
-        android:password="false"
-        android:layout_marginTop="20dp" />
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/scrollView"
+        android:layout_below="@+id/category_content">
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:id="@+id/synopsis_content"
+            android:password="false"
+            android:layout_alignParentEnd="true" />
+    </ScrollView>
 
 </RelativeLayout>
