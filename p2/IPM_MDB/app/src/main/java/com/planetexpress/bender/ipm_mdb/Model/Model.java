@@ -121,9 +121,9 @@ public class Model{
         return responseObject;
     }
 
-    public ArrayList<Movie> listMovies() {
+    public ArrayList<Movie> listMovies(String page) {
         StringBuilder url = new StringBuilder(40);
-        url.append(_url).append("movies");
+        url.append(_url).append("movies/page/").append(page);
 
         JSONObject json =  executeGetQuery(url.toString());
         ArrayList<Movie> movies = null;
@@ -244,7 +244,7 @@ public class Model{
         return null;
     }
 
-    public Void deleteComment(String idMovie, String idComment){
+    public Boolean deleteComment(String idMovie, String idComment){
         StringBuilder url = new StringBuilder(100);
         url.append(_url).
                 append("movies/").
@@ -255,7 +255,14 @@ public class Model{
         JSONObject json;
         json = executeDeleteQuery(url.toString());
 
-        return null;
+        Boolean deleted = null;
+        try {
+            deleted = parseJSON.parseJSONDeleteComment(json);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return deleted;
     }
 
 }

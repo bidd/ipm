@@ -55,13 +55,22 @@ public class comments extends Activity {
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TextView commentContent = (TextView) findViewById(R.id.commentsText);
+                TextView commentContent = (TextView) findViewById(R.id.commentText);
                 String content = commentContent.getText().toString();
 
                 AddComment addComment = new AddComment();
                 addComment.execute(id.toString(), content);
             }
         });
+
+        Button backButtonC = (Button) findViewById(R.id.backButtonC);
+        backButtonC.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
 
         AdapterView.OnItemLongClickListener itemLongClickListener = new AdapterView.OnItemLongClickListener() {
             @Override
@@ -70,9 +79,6 @@ public class comments extends Activity {
                 RelativeLayout relativeLayout = (RelativeLayout) linearLayoutParent.getChildAt(0);
                 TextView id_tv = (TextView) relativeLayout.getChildAt(3);
                 String commentID = id_tv.getText().toString();
-
-                Log.d("LONG CLICK LISTENER", commentID);
-
 
                 onDeleteComment(commentID);
                 return true;
@@ -134,21 +140,23 @@ public class comments extends Activity {
         }
     }
 
-    public class DeleteComment extends AsyncTask<String, Void, Void>{
+    public class DeleteComment extends AsyncTask<String, Void, Boolean>{
         @Override
-        protected Void doInBackground(String... params) {
+        protected Boolean doInBackground(String... params) {
             String idMovie = params[0];
             String idComment = params[1];
 
-            model.deleteComment(idMovie, idComment);
+            Boolean deleted = model.deleteComment(idMovie, idComment);
 
-            return null;
+            return deleted;
         }
 
         @Override
-        protected void onPostExecute(Void aVoid) {
+        protected void onPostExecute(Boolean aBoolean) {
             GetComments getComments = new GetComments();
             getComments.execute(id);
+            if (!aBoolean)
+                commentNotDeleted();
         }
     }
 
@@ -166,7 +174,8 @@ public class comments extends Activity {
                         DeleteComment deleteComment = new DeleteComment();
                         deleteComment.execute(id, commentID);
 
-                        Log.d("I DO WANT TO DELETE THE MOVIE","LALALALLALALAALLA");
+
+
                         dialog.cancel();
                     }
                 })
@@ -174,6 +183,29 @@ public class comments extends Activity {
                     public void onClick(DialogInterface dialog,int id) {
                         // if this button is clicked, just close
                         // the dialog box and do nothing
+                        dialog.cancel();
+                    }
+                });
+
+        // create alert dialog
+        AlertDialog alertDialog = alertDialogBuilder.create();
+
+        // show it
+        alertDialog.show();
+    }
+
+
+    public void commentNotDeleted(){
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+
+        // set dialog message
+        alertDialogBuilder
+                .setMessage("You can't delete this comment")
+                .setCancelable(false)
+                .setPositiveButton("Ok",new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog,int ids) {
+                        // if this button is clicked, close
+                        // current activity
                         dialog.cancel();
                     }
                 });

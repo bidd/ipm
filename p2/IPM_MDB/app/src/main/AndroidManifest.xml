@@ -24,8 +24,7 @@
         </activity>
         <activity
             android:name=".comments"
-            android:label="@string/title_activity_comments"
-            android:windowSoftInputMode="stateHidden"  >
+            android:label="@string/title_activity_comments" >
         </activity>
         <activity
             android:name=".Accounts"

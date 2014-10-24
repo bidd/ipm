@@ -51,7 +51,7 @@ public class AdapterComments<C> extends ArrayAdapter<Comment> {
 
             holder.txtUsername = (TextView) convertView.findViewById(R.id.usernameText);
             holder.txtDate = (TextView)  convertView.findViewById(R.id.dateText);
-            holder.txtContent = (TextView) convertView.findViewById(R.id.commentText);
+            holder.txtContent = (TextView) convertView.findViewById(R.id.commentContent);
             holder.txtId = (TextView) convertView.findViewById(R.id.idText);
             convertView.setTag(holder);
 

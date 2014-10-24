@@ -3,16 +3,20 @@
 
     <string name="app_name">IPM_MDB</string>
     <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
-    <string name="action_search">search</string>
-    <string name="title_activity_movie_detail">MovieDetail</string>
-    <string name="back">back</string>
-    <string name="fav">fav</string>
-    <string name="comments">comments</string>
-    <string name="cover">cover</string>
-    <string name="title_activity_comments">comments</string>
-    <string name="title_activity_accounts">Accounts</string>
-    <string name="title_activity_accounts_empty">Accounts_empty</string>
-    <string name="anho">anho</string>
+    <string name="action_settings">Ajustes</string>
+    <string name="action_search">Búsqueda</string>
+    <string name="title_activity_movie_detail">Detalles_Película</string>
+    <string name="back">Atrás</string>
+    <string name="fav">Favorito</string>
+    <string name="comments">comentarios</string>
+    <string name="cover">Portada</string>
+    <string name="title_activity_comments">Comentario</string>
+    <string name="title_activity_accounts">IPM_Cuentas:</string>
+    <string name="title_activity_accounts_empty">Cuanta_vacía</string>
+    <string name="year_detail">Año</string>
+    <string name="title_detail">Título</string>
+    <string name="category_detail">Categoría</string>
+    <string name="noFilm">No hay más películas</string>
+
 
 </resources>

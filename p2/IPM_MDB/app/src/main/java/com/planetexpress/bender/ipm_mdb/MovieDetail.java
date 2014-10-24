@@ -39,7 +39,7 @@ public class MovieDetail extends Activity {
         Detail detail = new Detail();
         detail.execute(id);
 
-        Button back_button= (Button) findViewById(R.id.backButtonMD);
+        Button back_button= (Button) findViewById(R.id.back_button);
         back_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

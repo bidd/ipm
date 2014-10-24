@@ -14,19 +14,21 @@ public class ParseJSON {
 
     protected ArrayList<Movie> parseJSONArrayMovies(JSONObject json) throws Exception {
         ArrayList<Movie> movies = new ArrayList<Movie>();
+        String result = json.getString("result");
+        if (result.contentEquals("success")) {
+            JSONArray data = json.getJSONArray("data");
+            for (int i = 0; i < data.length(); i++) {
+                JSONObject object = data.getJSONObject(i);
 
-        JSONArray data = json.getJSONArray("data");
-        for (int i = 0; i < data.length(); i++) {
-            JSONObject object = data.getJSONObject(i);
-
-            movies.add(i, new Movie(
-                    object.getInt("id"),
-                    object.getString("title"),
-                    object.getInt("year"),
-                    object.getString("url_image")));
+                movies.add(i, new Movie(
+                        object.getInt("id"),
+                        object.getString("title"),
+                        object.getInt("year"),
+                        object.getString("url_image")));
 
 
-            Log.d("title", object.getString("title"));
+                Log.d("title", object.getString("title"));
+            }
         }
         return movies;
     }
@@ -65,5 +67,10 @@ public class ParseJSON {
                     object.getString("email")));
         }
         return comments;
+    }
+
+    protected Boolean parseJSONDeleteComment(JSONObject json) throws Exception{
+        String result = json.getString("result");
+        return result.contentEquals("success");
     }
 }

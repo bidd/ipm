@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">IPM_MDB</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_search">search</string>
+    <string name="title_activity_movie_detail">MovieDetail</string>
+    <string name="back">back</string>
+    <string name="fav">fav</string>
+    <string name="comments">comments</string>
+    <string name="cover">cover</string>
+    <string name="title_activity_comments">comments</string>
+    <string name="title_activity_accounts">IPM_Accounts:</string>
+    <string name="title_activity_accounts_empty">Accounts_empty</string>
+    <string name="year_detail">Year</string>
+    <string name="title_detail">Title</string>
+    <string name="category_detail">Category</string>
+    <string name="noFilm">No more movies</string>
+
+</resources>

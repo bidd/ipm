@@ -14,7 +14,7 @@
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="back"
+        android:background="@drawable/ic_arrow_back_black_24dp"
         android:id="@+id/backButtonC"
         android:layout_marginRight="236dp" />
 
@@ -25,25 +25,24 @@
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/backButtonC"
-        android:layout_above="@+id/sendButton"
+        android:layout_above="@+id/commentText"
         android:choiceMode="singleChoice" />
 
     <EditText
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/commentsText"
+        android:id="@+id/commentText"
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
-        android:layout_toLeftOf="@+id/sendButton"
-        android:background="#ffffffff"
-        android:autoText="false" />
+        android:layout_toLeftOf="@+id/sendButton" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="send"
+        android:background="@drawable/ic_arrow_forward_black_24dp"
         android:id="@+id/sendButton"
+
         android:layout_below="@+id/moviesView"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true" />

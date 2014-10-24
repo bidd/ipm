@@ -31,7 +31,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:id="@+id/commentText"
+            android:id="@+id/commentContent"
             android:layout_below="@+id/usernameText"
             android:layout_margin="10dp" />
 

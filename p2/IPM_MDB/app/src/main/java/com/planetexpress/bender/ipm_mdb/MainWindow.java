@@ -4,10 +4,12 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SearchView;
@@ -17,6 +19,7 @@ import com.planetexpress.bender.ipm_mdb.Model.Model;
 import com.planetexpress.bender.ipm_mdb.Model.Movie;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class MainWindow extends Activity {
@@ -24,6 +27,8 @@ public class MainWindow extends Activity {
     private ListView listView;
     public Model model;
     public Intent intent;
+    private Integer page=1;
+    private List<Movie> movies = new ArrayList<Movie>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,8 +45,8 @@ public class MainWindow extends Activity {
         final String authToken = intent.getStringExtra(GlobalNames.ARG_AUTH_TOKEN);
 
         model = new Model(accountName, authToken);
-        ListMovies listMovies = new ListMovies();
-        listMovies.execute();
+        final ListMovies listMovies = new ListMovies();
+        listMovies.execute(page.toString());
 
         SearchView searchView = (SearchView) findViewById(R.id.searchView);
 
@@ -64,7 +69,6 @@ public class MainWindow extends Activity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
                 LinearLayout linearLayoutParent = (LinearLayout) view;
-                TextView title = (TextView) linearLayoutParent.getChildAt(2);
                 TextView id_tv = (TextView) linearLayoutParent.getChildAt(3);
                 String id = id_tv.getText().toString();
 
@@ -78,19 +82,34 @@ public class MainWindow extends Activity {
 
         listView.setOnItemClickListener(itemClickListener);
 
+        Button nextButtonPage = (Button) findViewById(R.id.nextPageButton);
+        nextButtonPage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                page ++;
+                new ListMovies().execute(page.toString());
+            }
+        });
+
 
     }
 
-    public class ListMovies extends AsyncTask<Void, Void, ArrayList<Movie>>{
+    public class ListMovies extends AsyncTask<String, Void, ArrayList<Movie>>{
         @Override
-        protected ArrayList<Movie> doInBackground(Void... params) {
-            return model.listMovies();
+        protected ArrayList<Movie> doInBackground(String... strings) {
+            String p = strings[0];
+            return model.listMovies(p);
         }
         @Override
-        protected void onPostExecute(ArrayList<Movie> movies){
-
-            AdapterMovies<Movie> adapter = new AdapterMovies<Movie>(MainWindow.this,R.layout.row_listview,movies);
-            listView.setAdapter(adapter);      //  <-------      nullpointer
+        protected void onPostExecute(ArrayList<Movie> m){
+            if (m.isEmpty()){
+                Button b = (Button) findViewById(R.id.nextPageButton);
+                b.setText(R.string.noFilm);
+            } else {
+                movies.addAll(m);
+                AdapterMovies<Movie> adapter = new AdapterMovies<Movie>(MainWindow.this, R.layout.row_listview, movies);
+                listView.setAdapter(adapter);
+            }
         }
     }
 

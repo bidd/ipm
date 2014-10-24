@@ -17,5 +17,12 @@
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/searchView"
-        android:choiceMode="singleChoice" />
+        android:choiceMode="singleChoice"
+        android:layout_above="@+id/nextPageButton"/>
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Next page"
+        android:id="@+id/nextPageButton"
+        android:layout_alignParentBottom="true"/>
 </RelativeLayout>
