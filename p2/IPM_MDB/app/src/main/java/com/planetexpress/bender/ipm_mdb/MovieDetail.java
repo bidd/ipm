@@ -2,16 +2,24 @@ package com.planetexpress.bender.ipm_mdb;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.planetexpress.bender.ipm_mdb.Model.Model;
 import com.planetexpress.bender.ipm_mdb.Model.Movie;
+
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 
 public class MovieDetail extends Activity {
@@ -117,6 +125,7 @@ public class MovieDetail extends Activity {
         }
     }
 
+   
     public class Detail extends AsyncTask<String,Void,Movie>{
         @Override
         protected Movie doInBackground(String... strings) {
@@ -138,6 +147,9 @@ public class MovieDetail extends Activity {
 
             TextView tvSynopsis = (TextView) findViewById(R.id.synopsis_content);
             tvSynopsis.setText(movie.get_synopsis());
+
+
+
 
         }
     }

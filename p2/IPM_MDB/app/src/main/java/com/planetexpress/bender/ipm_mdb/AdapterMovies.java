@@ -25,7 +25,6 @@ public class AdapterMovies<M> extends ArrayAdapter<Movie> {
 
     /*private view holder class*/
     private class ViewHolder {
-        ImageView imageView;
         TextView txtAno;
         TextView txtTitle;
         TextView txtId;
@@ -48,7 +47,6 @@ public class AdapterMovies<M> extends ArrayAdapter<Movie> {
 
             holder.txtTitle = (TextView) convertView.findViewById(R.id.texto);
             holder.txtAno = (TextView)  convertView.findViewById(R.id.anho);
-            holder.imageView = (ImageView) convertView.findViewById(R.id.imageMovie);
             holder.txtId = (TextView) convertView.findViewById(R.id.id);
             convertView.setTag(holder);
 
@@ -59,7 +57,7 @@ public class AdapterMovies<M> extends ArrayAdapter<Movie> {
         holder.txtTitle.setText(movie.get_title());
         holder.txtAno.setText(movie.get_year().toString());
         holder.txtId.setText(movie.get_id().toString());
-        holder.imageView.setImageResource(R.drawable.ic_launcher);
+
 
         return convertView;
     }

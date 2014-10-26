@@ -9,8 +9,7 @@
     <ImageView
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:id="@+id/imageMovie"
-        android:src="@drawable/ic_launcher"/>
+        android:id="@+id/imageMovie"></ImageView>
 
     <TextView
         android:layout_width="50dp"

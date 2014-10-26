@@ -56,6 +56,7 @@ public class ParseJSON {
         ArrayList<Comment> comments = new ArrayList<Comment>();
 
         JSONArray data = json.getJSONArray("data");
+
         for (int i = 0; i < data.length(); i++) {
             JSONObject object = data.getJSONObject(i);
 
@@ -66,6 +67,7 @@ public class ParseJSON {
                     object.getString("username"),
                     object.getString("email")));
         }
+
         return comments;
     }
 

@@ -112,12 +112,19 @@ public class comments extends Activity {
     public class GetComments extends AsyncTask<String, Void, ArrayList<Comment>> {
         @Override
         protected ArrayList<Comment> doInBackground(String... strings) {
+            if (strings[0].isEmpty()){
+                return null;
+            }
             return model.getComments(strings[0]);
         }
         @Override
         protected void onPostExecute(ArrayList<Comment> comments){
-            AdapterComments<Comment> adapter = new AdapterComments<Comment>(comments.this,R.layout.row_comment,comments);
-            listView.setAdapter(adapter);
+            if (comments==null){
+               finish();
+            }else {
+                AdapterComments<Comment> adapter = new AdapterComments<Comment>(comments.this, R.layout.row_comment, comments);
+                listView.setAdapter(adapter);
+            }
         }
     }
 
