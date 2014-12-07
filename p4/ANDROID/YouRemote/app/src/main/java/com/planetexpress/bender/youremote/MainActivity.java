@@ -18,10 +18,15 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import org.apache.http.HttpResponse;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import static com.planetexpress.bender.youremote.R.id.play_button;
+import static com.planetexpress.bender.youremote.R.id.state_tv;
 
 
 /*TO DO:
@@ -42,8 +47,6 @@ public class MainActivity extends Activity {
     Model model = new Model();
     private AdapterVideos adapter;
     private List<Video> videoList = new ArrayList<Video>();
-    private String m_Text = "";
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -113,37 +116,69 @@ public class MainActivity extends Activity {
                 onAddVideo();
             }
         });
+
+        TextView state_tv= (TextView) findViewById(R.id.state_tv);
+        state_tv.setText("Stopped");
     }
 
-    public class PlayVideo extends AsyncTask<Void, Void, Void> {
+    public class PlayVideo extends AsyncTask<Void, Void, HttpResponse> {
         @Override
-        protected Void doInBackground(Void... params) {
-            model.Play();
-            return null;
+        protected HttpResponse doInBackground(Void... params) {
+            return model.Play();
+        }
+
+        @Override
+        protected void onPostExecute(HttpResponse httpResponse) {
+            Log.d("XXXXXXXXXXXXXXX", httpResponse.getStatusLine().toString());
+            if (httpResponse.getStatusLine().toString().equals("HTTP/1.1 200 OK")) {
+                TextView state_tv = (TextView) findViewById(R.id.state_tv);
+                state_tv.setText("Playing");
+            }
         }
     }
 
-    public class PauseVideo extends AsyncTask<Void, Void, Void> {
+    public class PauseVideo extends AsyncTask<Void, Void, HttpResponse> {
         @Override
-        protected Void doInBackground(Void... params) {
-            model.Pause();
-            return null;
+        protected HttpResponse doInBackground(Void... params) {
+            return model.Pause();
+        }
+
+        @Override
+        protected void onPostExecute(HttpResponse httpResponse) {
+            if (httpResponse.getStatusLine().toString().equals("HTTP/1.1 200 OK")) {
+                TextView state_tv = (TextView) findViewById(R.id.state_tv);
+                state_tv.setText("Paused");
+            }
         }
     }
 
-    public class StopVideo extends AsyncTask<Void, Void, Void> {
+    public class StopVideo extends AsyncTask<Void, Void, HttpResponse> {
         @Override
-        protected Void doInBackground(Void... params) {
-            model.Stop();
-            return null;
+        protected HttpResponse doInBackground(Void... params) {
+            return model.Stop();
+        }
+
+        @Override
+        protected void onPostExecute(HttpResponse httpResponse) {
+            if (httpResponse.getStatusLine().toString().equals("HTTP/1.1 200 OK")) {
+                TextView state_tv = (TextView) findViewById(R.id.state_tv);
+                state_tv.setText("Stopped");
+            }
         }
     }
 
-    public class VideoById extends AsyncTask<String, Void, Void> {
+    public class VideoById extends AsyncTask<String, Void, HttpResponse> {
         @Override
-        protected Void doInBackground(String... params) {
-            model.VideoById(params[0]);
-            return null;
+        protected HttpResponse doInBackground(String... params) {
+            return model.VideoById(params[0]);
+        }
+
+        @Override
+        protected void onPostExecute(HttpResponse httpResponse) {
+            if (httpResponse.getStatusLine().toString().equals("HTTP/1.1 200 OK")) {
+                TextView state_tv = (TextView) findViewById(R.id.state_tv);
+                state_tv.setText("Stopped");
+            }
         }
     }
 
@@ -159,7 +194,6 @@ public class MainActivity extends Activity {
 
         @Override
         protected void onPostExecute(List<String> params) {
-            Log.d("PRUEBA", params.get(0));
             Video video = new Video(params.get(0), params.get(1));
             videoList.add(video);
             adapter.notifyDataSetChanged();
